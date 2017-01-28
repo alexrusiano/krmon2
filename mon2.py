@@ -262,7 +262,7 @@ def command_check(message) :
 @bot.message_handler(commands=['phone'])
 def command_phone(message) :
     try :
-        intID = re.findall('(\d{8,}', message.reply_to_message.text)[0]
+        intID = re.findall('(\d{8,})', message.reply_to_message.text)[0]
         getPhones(bot, message, intID)
     except Exception as ex :
         bot.reply_to(message, ex.args)
