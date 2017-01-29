@@ -211,10 +211,19 @@ def getPhotos(inBot=None, inMessage=None, intID=None) :
         details = krDetailsPage.detailsPage()
         details.load(details.detailsPrefix + intID)
         if not(details.getPhotos()) :
-            if DEBUG :
-                print("Error while receiving photos:", \
-                        details.lastError)
+            if details.lastError :
+                if inBot :
+                    inBot.reply_to(
+                        inMessage, "Error: " + details.lastError)
+                else :
+                    if DEBUG :
+                        print("Error:", details.lastError)
                 return False
+            else :
+                if inBot :
+                    inBot.reply_to(inMessage, "No photos in the Ad")
+                else :
+                    print("No photos in the Ad")
         else :
             if inBot :
                 for photo in details.photos :

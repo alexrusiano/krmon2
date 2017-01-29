@@ -60,7 +60,7 @@ class detailsPage(object) :
         * self.photos - empty array (if False returned)
         * self.lastError - last error message
         '''
-        
+        self.lastError = None
         soup = BeautifulSoup(self.pageContent, 'lxml')
         photoSoup = soup("a", {"class" : "small-thumb"})
 
